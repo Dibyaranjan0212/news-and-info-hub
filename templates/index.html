@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Info Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header-bar">
+            <div class="logo">News & Info Hub</div>
+            <form class="searchform cf" action="/" method="POST">
+                <input type="text" name="keyword" placeholder="Search more..." value="{{ query }}">
+                <button type="submit">Search</button>
+            </form>
+        </header>
+
+        <div class="main-content">
+            <div class="right-panel">
+                <div class="summary">
+                    <h2>Topic Modeling Results</h2>
+
+                    <!-- Box for LDA Topics -->
+                    <div class="topic-box lda-box">
+                        <h3>LDA Topics</h3>
+                        {% if lda_topics %}
+                            <ul>
+                                {% for topic in lda_topics %}
+                                    <li>{{ topic }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No LDA topics to display.</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Box for NMF Topics -->
+                    <div class="topic-box nmf-box">
+                        <h3>NMF Topics</h3>
+                        {% if nmf_topics %}
+                            <ul>
+                                {% for topic in nmf_topics %}
+                                    <li>{{ topic }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No NMF topics to display.</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Box for LSA Topics -->
+                    <div class="topic-box lsa-box">
+                        <h3>LSA Topics</h3>
+                        {% if lsa_topics %}
+                            <ul>
+                                {% for topic in lsa_topics %}
+                                    <li>{{ topic }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No LSA topics to display.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="left-panel">
+                <div class="search-results">
+                    <h2>Search Results</h2>
+                    {% if results %}
+                        {% for result in results %}
+                            <div class="result-item"><a href="{{ result }}">{{ result }}</a></div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="result-item">No results to display.</div>
+                    {% endif %}
+                </div>
+
+                <div class="keywords">
+                    <h2>Keywords</h2>
+                    <div class="keyword-grid">
+                        {% if keywords %}
+                            {% for keyword_list in keywords %}
+                                <div class="keyword-item">
+                                    {% for keyword in keyword_list %}
+                                        <span>{{ keyword }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="keyword-item">No keywords to display.</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box for Summary Result at the bottom of the page -->
+        <div class="summary-result" style="margin-top: 20px; padding: 20px; background-color: #f9f9f9;">
+            <h2>Summary Result</h2>
+            {% if summary %}
+                <p>{{ summary }}</p>
+            {% else %}
+                <p>No summary available.</p>
+            {% endif %}
+        </div>
+     
+    </div>
+</body>
+</html>
