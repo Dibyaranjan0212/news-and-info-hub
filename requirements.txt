@@ -1,0 +1,9 @@
+requests
+lxml
+scikit-learn
+nltk
+numpy
+textstat
+transformers
+torch
+flask
