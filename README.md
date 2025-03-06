@@ -31,7 +31,3 @@ This project is a **News and Information Hub** that fetches, analyzes, and ranks
 🔹 Implement **real-time news updates**.  
 
 🚀 **Contributions are welcome!** Feel free to fork and enhance the project.  
-
----
-
-Would you like me to add anything specific, like API documentation or example screenshots? 😊
